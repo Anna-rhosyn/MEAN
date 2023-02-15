@@ -1,9 +1,8 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-// import { tick } from "@angular/core/testing";
 import { Subscription } from "rxjs";
 
 import { Post } from "../post.model";
-import { PostService } from "../posts.serice";
+import { PostsService } from "../posts.serice";
 
 @Component({
   selector:'app-post-list',
@@ -22,7 +21,7 @@ export class PostListComponent implements OnInit,OnDestroy{
   private postsSub:Subscription;
 
 
- constructor(public postsService:PostService){}
+ constructor(public postsService:PostsService){}
 
  ngOnInit(){
   this.isLoading=true;
