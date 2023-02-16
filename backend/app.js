@@ -6,12 +6,13 @@ const mongoose = require("mongoose");
 const app = express();
 
 const postsRoutes = require("./routes/posts");
+const userRoutes = require("./routes/user");
 //
 mongoose.set("strictQuery", false);
 
 mongoose
   .connect(
-    "mongodb+srv://mean:AQsiuDEvRbJpU9nV@cluster1.znpzqyx.mongodb.net/node-angular?retryWrites=true&w=majority"
+    "mongodb+srv://mean:AQsiuDEvRbJpU9nV@cluster1.znpzqyx.mongodb.net/node-angular?&w=majority"
   )
   .then(() => {
     console.log("connected to database!");
@@ -28,7 +29,7 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
     "Access-Control-Allow-Headers",
-    "Origin,X-Requested-With,content-Type,Accept"
+    "Origin,X-Requested-With,content-Type,Accept,Authorization"
   );
   res.setHeader(
     "Access-Control-Allow-Methods",
@@ -39,5 +40,6 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/posts", postsRoutes);
+app.use("/api/user", userRoutes);
 
 module.exports = app;

@@ -30,12 +30,14 @@ constructor(private http:HttpClient, private router: Router){}
       }),
       maxPosts: postData.maxPosts
     };
-    }))
-    .subscribe(transpostsData=>{
-      this.posts= transpostsData.posts;
+    })
+    )
+    .subscribe(transformedPostData => {
+      this.posts = transformedPostData.posts;
       this.postsUpdated.next({
         posts: [...this.posts],
-        postCount:transpostsData.maxPosts } );
+        postCount: transformedPostData.maxPosts
+      });
     });
   }
 
@@ -45,7 +47,11 @@ getPostUpdateListener(){
 
 
 getPost(id:string){
- return this.http.get<{_id:string, title:string, content: string,  imagePath: string}>("http://localhost:3000/api/posts/"+ id);
+ return this.http.get<{
+  _id:string,
+   title:string,
+    content: string,
+     imagePath: string}>("http://localhost:3000/api/posts/"+ id);
 }
 
 addPost(title: string, content: string, image: File) {
@@ -59,13 +65,12 @@ addPost(title: string, content: string, image: File) {
       postData
     )
     .subscribe(responseData => {
-
       this.router.navigate(["/"]);
     });
 }
 
 
-updatePost(id: string, title: string, content: string, image:  string) {
+updatePost(id: string, title: string, content: string, image: File | string) {
   let postData: Post | FormData;
   if (typeof image === "object") {
     postData = new FormData();
@@ -73,7 +78,7 @@ updatePost(id: string, title: string, content: string, image:  string) {
     postData.append("title", title);
     postData.append("content", content);
     postData.append("image", image, title);
-  } else {
+  } else if(typeof image === "string"){
     postData = {
       id: id,
       title: title,
