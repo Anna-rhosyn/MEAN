@@ -1,0 +1,43 @@
+import { NgModule } from "@angular/core";
+import {MatDialogModule} from '@angular/material/dialog';
+import { MatInputModule} from '@angular/material/input';
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
+
+@NgModule({
+   imports:[
+    MatInputModule,
+    MatCardModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatProgressSpinnerModule,
+    MatPaginatorModule,
+    MatDialogModule
+   ],
+   exports:[
+    MatInputModule,
+    MatCardModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatProgressSpinnerModule,
+    MatPaginatorModule,
+    MatDialogModule
+   ]
+
+})
+
+export class AngualrMaterialModule{}
+
+
+
+

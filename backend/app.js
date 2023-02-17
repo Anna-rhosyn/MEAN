@@ -12,7 +12,9 @@ mongoose.set("strictQuery", false);
 
 mongoose
   .connect(
-    "mongodb+srv://mean:AQsiuDEvRbJpU9nV@cluster1.znpzqyx.mongodb.net/node-angular?&w=majority"
+    "mongodb+srv://mean:" +
+      process.env.MONGO_ATLAS_PW +
+      "@cluster1.znpzqyx.mongodb.net/node-angular?&w=majority"
   )
   .then(() => {
     console.log("connected to database!");
